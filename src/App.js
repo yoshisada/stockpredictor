@@ -61,14 +61,14 @@ function App() {
             <Box>
 
 
-              <img src="5yr.png" alt="logo" height="500" />
+              <img src="5yr.png" alt="logo" width="100%" />
             </Box>
           </Grid>
           <Grid item xs={5}>
             <Box>
 
 
-              <img src="5yrForecast.png" alt="logo" height="500" />
+              <img src="5yrForecast.png" alt="logo" width="100%" />
             </Box>
           </Grid>
         </Grid>
