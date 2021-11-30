@@ -73,7 +73,7 @@ function App() {
           </Grid>
         </Grid>
       </Grid>
-      <p style="font-size: 20px;">{currentTime}</p>
+      <p style={{"font-size: 20px;"}}>{currentTime}</p>
     </Box>
   );
 }
