@@ -37,7 +37,7 @@ function App() {
             <Typography variant="h6" style={{ display: "flex", justifyContent: "flex-start" }} >
               by: Ryan Suematsu
             </Typography>
-            <p>The current time is {currentTime}.</p>
+            <p>{currentTime}.</p>
           </Grid>
           <Grid item xs={3}>
             <Box>

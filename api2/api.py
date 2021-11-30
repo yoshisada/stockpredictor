@@ -14,12 +14,10 @@ app = Flask(__name__)
 @app.route('/result', methods = ['POST'])
 def result():
     data = request.json
-    print(data["data"])
     ticker = yf.Ticker(data["data"])
     print(ticker)
     data_ticker = ticker.history(period="60mo")
     data_ticker.reset_index(inplace=True)
-    print(data_ticker, data_ticker.info())
     #print(data2.index)
     newDF = pd.DataFrame(data_ticker, columns = ["Date", "Close"])
     prophet_df = newDF.rename(columns={"Date":'ds', "Close":'y'})
@@ -31,7 +29,6 @@ def result():
     forecast = prophet_data.predict(future)
 
     #fig = prophet_data.plot(forecast, xlabel='ds', ylabel='yhat')
-    print(forecast.info())
     t1 = go.Scatter(x=prophet_df["ds"][-360:], y=prophet_df["y"][-360:], name = "Actual Price")
     t2 = go.Line(x=forecast["ds"][-720:], y=forecast["yhat"][-720:], name = "Predicted Price")
 
@@ -58,15 +55,13 @@ def result():
     fig = px.line(forecast, x='ds', y=forecast.columns)
     fig = prophet_data.plot(forecast)
     fig.show()
-
-    print(prophet_df)
     t1 = go.Line(x=data_ticker["Date"], y=data_ticker["Close"])
     fig = make_subplots()
     fig.add_trace(t1)
     fig.update_layout(title_text="5 Year Price History for "+data["data"], xaxis_title="Date",
     yaxis_title="Price USD")
-    fig.write_image("../../public/5yr.png")
-    fig.write_html("../../public/5yr.html")
+    fig.write_image("../public/5yr.png")
+    fig.write_html("../public/5yr.html")
     #fig.show()
     return data
 
